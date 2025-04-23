@@ -1,10 +1,16 @@
-import { QuestionsPage } from "@pages/QuestionsPage";
+import { AppRouter } from "@/app/providers/router/router";
+import "./app/styles/app.scss";
+import { Header } from "./widgets/Header";
 
 function App() {
   return (
     <>
-      <h1>App</h1>
-      <QuestionsPage />
+      <Header />
+      <div className="wrapper">
+        <main>
+          <AppRouter />
+        </main>
+      </div>
     </>
   );
 }

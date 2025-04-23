@@ -1,10 +1,3 @@
-import { Header } from "@widgets/Header";
-
 export const QuestionsPage = () => {
-  return (
-    <>
-      <div>QuestionsPage</div>
-      <Header />
-    </>
-  );
+  return <h1>QuestionsPage</h1>;
 };
