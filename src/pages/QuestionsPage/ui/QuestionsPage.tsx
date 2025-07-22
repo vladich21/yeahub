@@ -1,3 +1,5 @@
+import { QuestionPageWidgets } from "@/widgets/QuestionPageWidgets";
+
 export const QuestionsPage = () => {
-  return <h1>QuestionsPage</h1>;
+  return <QuestionPageWidgets />;
 };

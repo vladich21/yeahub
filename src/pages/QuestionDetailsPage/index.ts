@@ -1,3 +1,1 @@
-import { QuestionDetailsPage } from "./ui/QuestionDetailsPage";
-
-export { QuestionDetailsPage };
+export { QuestionDetailsPage } from "./ui/QuestionDetailsPage";

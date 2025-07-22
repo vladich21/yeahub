@@ -1,8 +1,9 @@
-import { BrowserRouter } from "react-router-dom";
 import { createRoot } from "react-dom/client";
-import App from "./App.tsx";
-import { Provider } from "react-redux";
-import { store } from "./app/providers/store/store.ts";
+import { StrictMode } from "react";
+import { StoreProvider } from "@app/providers/StoreProvider";
+import { RouterProvider } from "react-router-dom";
+import { router } from "@app/AppRouter";
+import "./styles/app.scss";
 
 const container = document.getElementById("root");
 
@@ -10,11 +11,11 @@ if (container) {
   const root = createRoot(container);
 
   root.render(
-    <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>
+    <StrictMode>
+      <StoreProvider>
+        <RouterProvider router={router} />
+      </StoreProvider>
+    </StrictMode>
   );
 } else {
   throw new Error(

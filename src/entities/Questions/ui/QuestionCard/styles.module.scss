@@ -1,0 +1,66 @@
+// entities/Questions/ui/QuestionCard/styles.module.scss
+.card {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0;
+}
+
+.questionTitle {
+  font-size: 20px;
+  margin: 0 0 10px 0;
+  color: #1976d2;
+}
+
+.content {
+  margin-bottom: 15px;
+  line-height: 1.6;
+
+  p {
+    margin: 10px 0;
+  }
+
+  code {
+    background: #f5f5f5;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: monospace;
+  }
+}
+
+.meta {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #666;
+}
+
+.complexity {
+  &::before {
+    content: "⭐";
+    margin-right: 5px;
+  }
+}
+
+.rating {
+  &::before {
+    content: "❤️";
+    margin-right: 5px;
+  }
+}
+
+.moreButton {
+  margin-top: 15px;
+  background: none;
+  border: none;
+  color: #1976d2;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 5px 0;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
