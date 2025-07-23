@@ -1,27 +1,41 @@
 // entities/Questions/ui/QuestionCard/QuestionCard.tsx
+import { useNavigate } from "react-router-dom";
 import type { QuestionData } from "../../model/types";
 import styles from "./styles.module.scss";
-import { MarkdownRenderer } from "@shared/ui/MarkdownRenderer/MarkdownRenderer";
+import DOMPurify from "dompurify";
 
 interface QuestionCardProps {
   question: QuestionData;
 }
 
-export const QuestionCard = ({ question }: QuestionCardProps) => (
-  <article className={styles.card}>
-    <h2 className={styles.questionTitle}>{question.title}</h2>
+export const QuestionCard = ({ question }: QuestionCardProps) => {
+  const navigate = useNavigate();
 
-    <div className={styles.content}>
-      <MarkdownRenderer content={question.shortAnswer} />
-    </div>
+  const handleShowDetails = () => {
+    navigate(`/questions/${question.id}`);
+  };
 
-    <div className={styles.meta}>
-      <span className={styles.complexity}>
-        Сложность: {question.complexity}
-      </span>
-      <span className={styles.rating}>Рейтинг: {question.rate}</span>
-    </div>
+  return (
+    <article className={styles.card}>
+      <h2 className={styles.questionTitle}>{question.title}</h2>
+      <div className={styles.meta}>
+        <span className={styles.rating}>
+          Рейтинг: <strong>{question.rate}</strong>
+        </span>
+        <span className={styles.complexity}>
+          Сложность: <strong>{question.complexity}</strong>
+        </span>
+      </div>
 
-    <button className={styles.moreButton}>Подробнее</button>
-  </article>
-);
+      <div
+        className={styles.content}
+        dangerouslySetInnerHTML={{
+          __html: DOMPurify.sanitize(question.shortAnswer),
+        }}
+      />
+      <nav className={styles.moreLink} onClick={handleShowDetails}>
+        Подробнее
+      </nav>
+    </article>
+  );
+};

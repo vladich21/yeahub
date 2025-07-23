@@ -1,0 +1,15 @@
+.page {
+  margin-top: 75px;
+  width: 804px;
+}
+.backButton {
+  background: none;
+  border: none;
+  color: #6a0bff;
+  cursor: pointer;
+  padding: 8px 0;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
