@@ -3,8 +3,8 @@ import {
   SpecializationsFilter,
   ComplexityFilter,
   RatingFilter,
-} from "../../../entities/Filters";
-import { SearchQuestion } from "../../../features/SearchQuestion/ui/SearchQuestion";
+} from "@entities/Filters";
+import { SearchQuestion } from "@features/SearchQuestion/ui/SearchQuestion";
 import styles from "./styles.module.scss";
 
 interface FiltersListProps {
@@ -22,7 +22,7 @@ interface FiltersListProps {
   onRateSelect: (value: string) => void;
 }
 
-export const FiltersList = ({
+const FiltersList = ({
   specialization,
   skills,
   selectedSkillIds,
@@ -55,3 +55,4 @@ export const FiltersList = ({
     </aside>
   );
 };
+export default FiltersList;

@@ -3,7 +3,54 @@
   max-width: 392px;
   min-width: 290px;
   width: 100%;
-  background-color: #fff;
+  margin-top: 20px;
   align-self: flex-start;
   border-radius: 24px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.filtersSkeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+  height: 100%;
+  box-sizing: border-box;
+  background: linear-gradient(90deg, #f0f0f0 25%, #d7d6d6 50%, #f0f0f0 75%);
+}
+
+.skeletonFilter {
+  background: linear-gradient(90deg, #dfdede 25%, #bababa 50%, #dfdede 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s linear infinite;
+  border-radius: 16px;
+
+  &:nth-child(1) {
+    height: 50px;
+  } // Специализации
+  &:nth-child(2) {
+    height: 293px;
+  } // Навыки
+  &:nth-child(3) {
+    margin-top: 10px;
+    height: 200px;
+  } // Сложность
+  &:nth-child(4) {
+    margin-top: 40px;
+    height: 68px;
+  } // Рейтинг
+  &:nth-child(5) {
+    height: 68px;
+    margin-top: 20px;
+  } // Поиск (если есть)
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }

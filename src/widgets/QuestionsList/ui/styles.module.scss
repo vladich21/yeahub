@@ -1,0 +1,82 @@
+@use "../../../app/styles/variables" as *;
+
+.title {
+  font-size: 24px;
+  margin: 0;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+}
+
+.error {
+  color: #d32f2f;
+  padding: 40px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.questionsContainter {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 20px 40px;
+  background-color: #fff;
+  margin-top: 20px;
+  border-radius: 24px;
+}
+
+.questionContainerSkeleton {
+  background: linear-gradient(90deg, #dfdede 25%, #bababa 50%, #dfdede 75%);
+  max-width: 800px;
+  height: 1117px;
+  border-radius: 24px;
+}
+/* Стили скелетона */
+.skeletonTitle {
+  height: 32px;
+  width: 200px;
+  background: $skeleton-gradient;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.skeletonCard {
+  padding: 24px;
+  border-bottom: 1px solid #e8e8e8;
+  background: linear-gradient(90deg, #f0f0f0 25%, #d7d6d6 50%, #f0f0f0 75%);
+  max-width: 800px;
+  height: 1117px;
+}
+
+.skeletonQuestionTitle {
+  height: 24px;
+  width: 100%;
+  background: $skeleton-gradient;
+  border-radius: 6px;
+}
+
+/* Анимация (добавьте в variables.scss или здесь) */
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}

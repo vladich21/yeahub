@@ -6,7 +6,7 @@ export const Card = ({ children, question }: CardProps) => {
     <div className={styles.card}>
       {children}
       {question && (
-        <div className="question-content">
+        <div>
           <h3>{question.title}</h3>
           <p>{question.description}</p>
         </div>

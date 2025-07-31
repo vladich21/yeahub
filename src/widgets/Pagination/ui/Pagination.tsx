@@ -1,4 +1,8 @@
 import { PaginationArrow } from "../../../shared/ui/PaginationArrow/PaginationArrow";
+import { usePagination } from "../lib/usePagination";
+import { PaginationButton } from "./PaginationButton";
+import { PaginationEllipsis } from "./PaginationEllipsis";
+
 import styles from "./styles.module.scss";
 
 interface PaginationProps {
@@ -7,53 +11,18 @@ interface PaginationProps {
   limit: number;
   onChange: (page: number) => void;
 }
+
 export const Pagination = ({
   currentPage,
   total,
   limit,
   onChange,
 }: PaginationProps) => {
-  const totalPages = Math.ceil(total / limit);
-  const maxVisiblePages = 5; // Теперь показываем 5 страниц вокруг текущей
-  // const shouldShowEllipsis = totalPages > maxVisiblePages + 2; // +2 для первой и последней страниц
-
-  const getPageNumbers = () => {
-    if (totalPages <= maxVisiblePages + 2) {
-      return Array.from({ length: totalPages }, (_, i) => i + 1);
-    }
-
-    const pages = [];
-    pages.push(1); // Всегда добавляем первую страницу
-
-    // Определяем диапазон страниц вокруг текущей
-    let startPage = Math.max(2, currentPage - Math.floor(maxVisiblePages / 2));
-    const endPage = Math.min(totalPages - 1, startPage + maxVisiblePages - 1);
-
-    // Корректируем диапазон, если выходим за границы
-    if (endPage - startPage + 1 < maxVisiblePages) {
-      startPage = Math.max(2, endPage - maxVisiblePages + 1);
-    }
-
-    // Добавляем многоточие после первой страницы, если нужно
-    if (startPage > 2) {
-      pages.push("ellipsis-left");
-    }
-
-    // Добавляем страницы в диапазоне
-    for (let i = startPage; i <= endPage; i++) {
-      pages.push(i);
-    }
-
-    // Добавляем многоточие перед последней страницей, если нужно
-    if (endPage < totalPages - 1) {
-      pages.push("ellipsis-right");
-    }
-
-    // Всегда добавляем последнюю страницу
-    pages.push(totalPages);
-
-    return pages;
-  };
+  const { pages, totalPages, canGoPrev, canGoNext } = usePagination({
+    total,
+    limit,
+    currentPage,
+  });
 
   if (totalPages <= 1) return null;
 
@@ -61,46 +30,33 @@ export const Pagination = ({
     <div className={styles.pagination}>
       <button
         onClick={() => onChange(currentPage - 1)}
-        disabled={currentPage === 1}
+        disabled={!canGoPrev}
         className={styles.arrowButton}
         aria-label="Previous page"
       >
-        <PaginationArrow direction="left" disabled={currentPage === 1} />
+        <PaginationArrow direction="left" disabled={!canGoPrev} />
       </button>
 
-      {getPageNumbers().map((page, index) => {
-        if (page === "ellipsis-left" || page === "ellipsis-right") {
-          return (
-            <span key={`ellipsis-${index}`} className={styles.ellipsis}>
-              ...
-            </span>
-          );
-        }
-
-        return (
-          <button
+      {pages.map((page, index) =>
+        typeof page === "string" ? (
+          <PaginationEllipsis key={`${page}-${index}`} />
+        ) : (
+          <PaginationButton
             key={page}
-            onClick={() => onChange(page as number)}
-            className={`${styles.pageButton} ${
-              page === currentPage ? styles.active : ""
-            }`}
-            aria-current={page === currentPage ? "page" : undefined}
-          >
-            {page}
-          </button>
-        );
-      })}
+            page={page}
+            isActive={page === currentPage}
+            onClick={() => onChange(page)}
+          />
+        )
+      )}
 
       <button
         onClick={() => onChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
+        disabled={!canGoNext}
         className={styles.arrowButton}
         aria-label="Next page"
       >
-        <PaginationArrow
-          direction="right"
-          disabled={currentPage === totalPages}
-        />
+        <PaginationArrow direction="right" disabled={!canGoNext} />
       </button>
     </div>
   );

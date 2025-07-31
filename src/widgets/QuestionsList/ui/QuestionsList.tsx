@@ -1,17 +1,17 @@
 import { QuestionCard } from "@entities/Questions/ui";
+import { QuestionData } from "@entities/Questions/model/types";
+import { Pagination } from "@widgets/Pagination";
 import styles from "./styles.module.scss";
-import { QuestionData } from "../../../entities/Questions/model/types";
-import { Pagination } from "../../../widgets/Pagination";
 
 interface Props {
   questions: QuestionData[];
   total: number;
   limit: number;
   currentPage: number;
-  onPageChange: (page: number) => void;
+  onPageChange: (page: string) => void;
 }
 
-export const QuestionsList = ({
+const QuestionsList = ({
   questions,
   total,
   limit,
@@ -33,9 +33,10 @@ export const QuestionsList = ({
           currentPage={currentPage}
           total={total}
           limit={limit}
-          onChange={onPageChange}
+          onChange={(page) => onPageChange(String(page))}
         />
       </section>
     </>
   );
 };
+export default QuestionsList;

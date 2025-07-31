@@ -3,3 +3,9 @@ $background: #f4f4f4;
 $purple: #6a0bff;
 
 $duration: 0.15s;
+$skeleton-gradient: linear-gradient(
+  90deg,
+  rgba(#f5f5f5, 0.9) 25%,
+  rgba(#e8e8e8, 0.9) 50%,
+  rgba(#f5f5f5, 0.9) 75%
+);

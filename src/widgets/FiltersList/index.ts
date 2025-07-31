@@ -1,3 +1,3 @@
-import { FiltersList } from "./ui/FiltersList";
+import FiltersList from "./ui/FiltersList";
 
 export { FiltersList };
