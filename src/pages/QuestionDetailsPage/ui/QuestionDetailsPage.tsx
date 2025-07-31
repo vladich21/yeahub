@@ -7,7 +7,7 @@ import { useState } from "react";
 import { ArrowIcon } from "../../../shared/ui/icons/ArrowIcon";
 import { ArrowDown } from "../../../shared/ui/icons/ArrowDown";
 
-export const QuestionDetailsPage = () => {
+const QuestionDetailsPage = () => {
   const [open, setOpen] = useState(false);
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -106,3 +106,5 @@ export const QuestionDetailsPage = () => {
     </div>
   );
 };
+
+export default QuestionDetailsPage;

@@ -1,2 +1,2 @@
-import { QuestionPageWidgets } from "./ui/QuestionPageWidgets";
-export { QuestionPageWidgets };
+import { QuestionsListWidget } from "./ui/QuestionsListWidgets";
+export { QuestionsListWidget };

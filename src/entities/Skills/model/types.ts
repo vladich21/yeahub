@@ -16,3 +16,10 @@ export type SkillsResponse = {
   data: SkillsData[];
   total: number;
 };
+
+export type SkillsParams = {
+  page?: number;
+  limit?: number;
+  specializations?: number[];
+  authorId?: string;
+};

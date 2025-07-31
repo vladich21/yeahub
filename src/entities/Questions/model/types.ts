@@ -2,22 +2,21 @@ import { SkillsData } from "../../Skills/model/types";
 import { SpecializationsData } from "../../Spezializations/model/types";
 
 export interface QuestionsListParams {
-  page: number;
-  limit: number;
-  title: string;
-  titleOrDescription: string;
-  skills: string;
-  skillFilterMode: string;
-  complexity: string;
-  collection: number;
-  rate: string;
-  keywords: string[];
-  specialization: string;
-  orderBy: string;
-  order: string;
-  random: boolean;
+  page?: number;
+  limit?: number;
+  title?: string;
+  skills?: string;
+  complexity?: string;
+  specialization?: number; // Изменим на необязательный параметр
+  rate?: string;
+  titleOrDescription?: string;
+  skillFilterMode?: "ALL" | "ANY";
+  collection?: number;
+  keywords?: string;
+  orderBy?: string;
+  order?: string;
+  random?: boolean;
 }
-
 export interface QuestionResponse {
   page: number;
   limit: number;

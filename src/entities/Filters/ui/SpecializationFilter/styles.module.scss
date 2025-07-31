@@ -1,0 +1,42 @@
+.filterGroup {
+  background: #fff;
+  padding: 16px;
+  // margin-top: 24px;
+  border-radius: 24px;
+}
+
+.filterTitle {
+  font-weight: 400;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.filterButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.filterButton {
+  font-weight: 500;
+  line-height: 1.2;
+  padding: 10px 12px;
+  border: 1px solid #bababa;
+  border-radius: 12px;
+  color: #303030;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &.active {
+    border: 1px solid #6a0bff;
+  }
+}
+
+.showAllButton {
+  color: #6a0bff;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 8px;
+  display: inline-block;
+  text-decoration: underline;
+}

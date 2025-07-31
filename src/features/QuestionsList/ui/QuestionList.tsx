@@ -1,29 +1,41 @@
-// features/questionsList/ui/QuestionsList.tsx
-import { useQuestionsList } from "../lib/hooks/useQuestionsList";
-import { QuestionCard } from "@entities/Questions/ui/index";
-import type { QuestionsListParams } from "@entities/Questions/model/types";
+import { QuestionCard } from "@entities/Questions/ui";
 import styles from "./styles.module.scss";
+import { QuestionData } from "../../../entities/Questions/model/types";
+import { Pagination } from "../../../widgets/Pagination";
 
-interface QuestionsListProps {
-  filters: QuestionsListParams;
+interface Props {
+  questions: QuestionData[];
+  total: number;
+  limit: number;
+  currentPage: number;
+  onPageChange: (page: number) => void;
 }
 
-export const QuestionsList = ({ filters }: QuestionsListProps) => {
-  const { questions, isLoading, isError } = useQuestionsList(filters);
-
-  if (isLoading) return <div className={styles.loading}>Loading...</div>;
-  if (isError)
-    return <div className={styles.error}>Error loading questions</div>;
-  if (!questions) return <div>Вопрос не найден</div>;
+export const QuestionsList = ({
+  questions,
+  total,
+  limit,
+  currentPage,
+  onPageChange,
+}: Props) => {
+  if (!questions.length) return <div>No questions found</div>;
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>Список вопросов</h1>
-      <div className={styles.list}>
-        {questions.map((question) => (
-          <QuestionCard key={question.id} question={question} />
-        ))}
-      </div>
-    </div>
+    <>
+      <section className={styles.questionsContainter}>
+        <h1 className={styles.title}>Список вопросов</h1>
+        <div className={styles.list}>
+          {questions.map((question) => (
+            <QuestionCard key={question.id} question={question} />
+          ))}
+        </div>
+        <Pagination
+          currentPage={currentPage}
+          total={total}
+          limit={limit}
+          onChange={onPageChange}
+        />
+      </section>
+    </>
   );
 };
