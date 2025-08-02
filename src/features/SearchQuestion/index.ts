@@ -1,3 +1,3 @@
-import { InputQuestion } from "./ui/SearchQuestion";
+import { SearchQuestion } from "./ui/SearchQuestion";
 
-export { InputQuestion };
+export { SearchQuestion };

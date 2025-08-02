@@ -1,4 +1,3 @@
-// features/SearchQuestion/ui/SearchQuestion.tsx
 import { useCallback, ChangeEvent } from "react";
 import { Input } from "@shared/ui/Input/Input";
 import { useQueryParams } from "@shared/lib/hooks/useQueryParams";
