@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./styles.module.scss";
+import styles from "../../styles/styles.module.scss";
 
 interface SkillsFilterProps {
   skills: Array<{ id: number; title: string }>;

@@ -1,4 +1,4 @@
-import styles from "./styles.module.scss";
+import styles from "../../styles/styles.module.scss";
 import { ratingRanges } from "@entities/Filters/helpers/constants";
 
 interface RatingFilterProps {

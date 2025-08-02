@@ -16,24 +16,31 @@ const QuestionContent = ({
 }) => (
   <>
     <section className={styles.sectionShort}>
-      <h2>Короткий ответ</h2>
+      <h2 className={styles.title}>Краткий ответ</h2>
       <div
+        className={styles.answerContent}
         dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(shortAnswer) }}
       />
     </section>
 
     <section className={styles.sectionLong}>
-      <h2>Развернутый ответ</h2>
+      <h2 className={styles.title}>Развернутый ответ</h2>
       <div
         className={clsx(styles.answerContent, {
           [styles.open]: isExpanded,
         })}
         dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(longAnswer) }}
       />
-      <button onClick={onToggle}>
-        {isExpanded ? "Свернуть" : "Раскрыть"}
-        <ArrowDown className={clsx({ [styles.expanded]: isExpanded })} />
-      </button>
+      <div className={styles.containerDown}>
+        <button className={styles.buttonToggle} onClick={onToggle}>
+          {isExpanded ? "Свернуть" : "Раскрыть"}
+          <ArrowDown
+            className={clsx(styles.arrowDown, {
+              [styles.expanded]: isExpanded,
+            })}
+          />
+        </button>
+      </div>
     </section>
   </>
 );

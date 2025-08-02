@@ -1,5 +1,5 @@
 import { ButtonFilter } from "@/shared/ui/ButtonFilter/ButtonFilter";
-import styles from "./styles.module.scss";
+import styles from "../../styles/styles.module.scss";
 import { useState } from "react";
 
 interface SpecializationsFilterProps {

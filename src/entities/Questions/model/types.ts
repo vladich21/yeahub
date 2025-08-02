@@ -7,7 +7,7 @@ export interface QuestionsListParams {
   title?: string;
   skills?: string;
   complexity?: string;
-  specialization?: number; // Изменим на необязательный параметр
+  specialization?: number;
   rate?: string;
   titleOrDescription?: string;
   skillFilterMode?: "ALL" | "ANY";

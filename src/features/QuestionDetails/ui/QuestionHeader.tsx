@@ -12,12 +12,14 @@ const QuestionHeader = ({
   <section className={styles.sectionHeader}>
     <div className={styles.containerBack}>
       <ArrowIcon />
-      <button className={styles.backButton} onClick={onBack}>
+      <span className={styles.backButton} onClick={onBack}>
         Назад
-      </button>
+      </span>
     </div>
-    <h1 className={styles.title}>{title}</h1>
-    {description && <p className={styles.description}>{description}</p>}
+    <div className={styles.containerHeader}>
+      <h1 className={styles.title}>{title}</h1>
+      {description && <p className={styles.description}>{description}</p>}
+    </div>
   </section>
 );
 

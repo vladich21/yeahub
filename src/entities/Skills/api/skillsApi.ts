@@ -8,10 +8,9 @@ export const skillApi = baseApi.injectEndpoints({
         url: "/skills",
         params: {
           ...params,
-          ...(specializations &&
-            specializations.length > 0 && {
-              specializations: specializations.join(", "),
-            }),
+          ...(specializations?.length && {
+            specializations: specializations.join(","),
+          }),
         },
       }),
     }),

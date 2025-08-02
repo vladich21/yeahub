@@ -1,7 +1,6 @@
 import { lazy, Suspense } from "react";
 import { QuestionsListSkeleton } from "@widgets/QuestionsList/ui/QuestionListSkeleton";
-import { FiltersListSkeleton } from "../../../widgets/FiltersList/ui/FiltersListSkeleton";
-
+import { FiltersListSkeleton } from "@widgets/FiltersList/ui/FiltersListSkeleton";
 import { useGetQuestionsQuery } from "@entities/Questions/api/questionsApi";
 import { useQuestionsFilters } from "@features/QuestionFilters/lib/useQuestionsFilters";
 import styles from "./styles.module.scss";
@@ -14,8 +13,12 @@ const FiltersList = lazy(() => import("@/widgets/FiltersList/ui/FiltersList"));
 export const QuestionsPage = () => {
   const { filters, queryParams, actions } = useQuestionsFilters();
 
-  const { data: questionsData, isError } = useGetQuestionsQuery(queryParams);
-
+  const {
+    data: questionsData,
+    isError,
+    isLoading,
+  } = useGetQuestionsQuery(queryParams);
+  if (isLoading) return <QuestionsListSkeleton />;
   if (isError) return <div className={styles.error}>Error loading data</div>;
 
   return (

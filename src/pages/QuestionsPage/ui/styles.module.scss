@@ -20,17 +20,6 @@
   min-width: 0;
 }
 
-.loading,
-.error {
-  padding: 40px;
-  text-align: center;
-  font-size: 18px;
-}
-
-.error {
-  color: #d32f2f;
-}
-
 @media (max-width: 768px) {
   .contentWrapper {
     flex-direction: column;

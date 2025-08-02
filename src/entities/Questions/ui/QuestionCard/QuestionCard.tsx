@@ -1,4 +1,3 @@
-// entities/Questions/ui/QuestionCard/QuestionCard.tsx
 import { useNavigate } from "react-router-dom";
 import type { QuestionData } from "../../model/types";
 import styles from "./styles.module.scss";

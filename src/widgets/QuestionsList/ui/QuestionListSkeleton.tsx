@@ -1,4 +1,3 @@
-// widgets/QuestionsList/ui/QuestionsListSkeleton.tsx
 import styles from "./styles.module.scss";
 
 export const QuestionsListSkeleton = () => {

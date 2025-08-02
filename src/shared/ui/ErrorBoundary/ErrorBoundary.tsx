@@ -1,5 +1,6 @@
 // shared/ui/ErrorBoundary/ErrorBoundary.tsx
 import { Component, ErrorInfo, ReactNode } from "react";
+import styles from './styles.module.scss'
 
 interface ErrorBoundaryProps {
   children: ReactNode;
@@ -39,7 +40,7 @@ export class ErrorBoundary extends Component<
     if (this.state.hasError) {
       return (
         this.props.fallback || (
-          <div className="error-boundary">
+          <div className={styles.errorBoundary}>
             <h2>Что-то пошло не так</h2>
             <p>{this.state.error?.message}</p>
             <button onClick={this.handleRetry}>Попробовать снова</button>
