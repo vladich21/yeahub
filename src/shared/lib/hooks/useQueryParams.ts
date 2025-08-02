@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
 
 type QueryParams = {
@@ -7,7 +8,7 @@ type QueryParams = {
   rate: string;
   complexity: string;
   title: string;
-  skillFilterMode: string; // Добавляем новый параметр
+  skillFilterMode: string;
 };
 
 export const useQueryParams = () => {
@@ -29,31 +30,34 @@ export const useQueryParams = () => {
     );
   };
 
-  const toggleSkill = (skillId: number) => {
-    setSearchParams(
-      (prev) => {
-        const newParams = new URLSearchParams(prev);
-        const current =
-          newParams.get("skills")?.split(",").filter(Boolean) || [];
-        const skillStr = String(skillId);
+  const toggleSkill = useCallback(
+    (skillId: number) => {
+      setSearchParams(
+        (prev) => {
+          const newParams = new URLSearchParams(prev);
+          const current =
+            newParams.get("skills")?.split(",").filter(Boolean) || [];
+          const skillStr = String(skillId);
 
-        const updatedSkills = current.includes(skillStr)
-          ? current.filter((id) => id !== skillStr)
-          : [...current, skillStr];
+          const updatedSkills = current.includes(skillStr)
+            ? current.filter((id) => id !== skillStr)
+            : [...current, skillStr];
 
-        if (updatedSkills.length > 0) {
-          newParams.set("skills", updatedSkills.join(","));
-          newParams.set("skillFilterMode", "ANY"); // Используем "ANY" для ИЛИ-фильтрации
-        } else {
-          newParams.delete("skills");
-          newParams.delete("skillFilterMode");
-        }
-        newParams.set("page", "1");
-        return newParams;
-      },
-      { replace: true }
-    );
-  };
+          if (updatedSkills.length > 0) {
+            newParams.set("skills", updatedSkills.join(","));
+            newParams.set("skillFilterMode", "ANY");
+          } else {
+            newParams.delete("skills");
+            newParams.delete("skillFilterMode");
+          }
+          newParams.set("page", "1");
+          return newParams;
+        },
+        { replace: true }
+      );
+    },
+    [setSearchParams]
+  );
 
   const toggleComplexity = (values: string) => {
     setSearchParams(
@@ -63,14 +67,13 @@ export const useQueryParams = () => {
           newParams.get("complexity")?.split(",").filter(Boolean) || [];
         const valuesToToggle = values.split(",");
 
-        // Проверяем, все ли значения уже выбраны
         const allSelected = valuesToToggle.every((val) =>
           current.includes(val)
         );
 
         const updatedComplexities = allSelected
-          ? current.filter((val) => !valuesToToggle.includes(val)) // Удаляем если все были выбраны
-          : [...new Set([...current, ...valuesToToggle])]; // Добавляем если не все
+          ? current.filter((val) => !valuesToToggle.includes(val))
+          : [...new Set([...current, ...valuesToToggle])];
 
         if (updatedComplexities.length > 0) {
           newParams.set("complexity", updatedComplexities.join(","));
@@ -113,11 +116,10 @@ export const useQueryParams = () => {
     rate: getParam("rate"),
     complexity: getParam("complexity"),
     title: getParam("title") ?? "",
-    skillFilterMode: getParam("skillFilterMode"), // Новый параметр
+    skillFilterMode: getParam("skillFilterMode"),
 
     setPage: (value: string) => updateParam("page", value),
     setSpecialization: (value?: string) => updateParam("specialization", value),
-    // setSkills: (value?: string) => updateParam("skills", value),
     setRate: (value: string) => updateParam("rate", value),
     setComplexity: (value: string) => updateParam("complexity", value),
     toggleSkill,

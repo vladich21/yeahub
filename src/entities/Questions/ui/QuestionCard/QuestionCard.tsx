@@ -2,23 +2,27 @@ import { useNavigate } from "react-router-dom";
 import type { QuestionData } from "../../model/types";
 import styles from "./styles.module.scss";
 import DOMPurify from "dompurify";
-import React, { useState } from "react";
+import React, { memo, useCallback, useState } from "react";
 
 interface QuestionCardProps {
   question: QuestionData;
 }
 
-export const QuestionCard = ({ question }: QuestionCardProps) => {
+export const QuestionCard = memo(({ question }: QuestionCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const navigate = useNavigate();
 
-  const handleShowDetails = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    navigate(`/questions/${question.id}`);
-  };
-  const toggleExpand = () => {
-    setIsExpanded(!isExpanded);
-  };
+  const handleShowDetails = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      navigate(`/questions/${question.id}`);
+    },
+    [navigate, question.id]
+  );
+  const toggleExpand = useCallback(() => {
+    setIsExpanded((prev) => !prev);
+  }, []);
+
   return (
     <article className={styles.card} onClick={toggleExpand}>
       <div className={styles.header}>
@@ -59,4 +63,4 @@ export const QuestionCard = ({ question }: QuestionCardProps) => {
       </div>
     </article>
   );
-};
+});

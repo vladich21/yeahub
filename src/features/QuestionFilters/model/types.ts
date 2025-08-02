@@ -3,7 +3,7 @@ export interface UseQuestionsFiltersResult {
     specialization: {
       options: Array<{ id: number; title: string }>;
       selectedId?: number;
-      onSelect: (id: number) => void;
+      onSelect: (id: number | string) => void;
     };
     skills: {
       options: Array<{ id: number; title: string }>;

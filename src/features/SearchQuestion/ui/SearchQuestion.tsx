@@ -18,7 +18,7 @@ export const SearchQuestion = () => {
 
   const handleChangeTitle = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.value;
+      const value = e.target.value.trim();
       setLocalTitle(value);
       debouncedSetTitle(value);
     },
@@ -34,6 +34,7 @@ export const SearchQuestion = () => {
         value={localTitle}
         onChange={handleChangeTitle}
         aria-label="Поиск вопросов"
+        aria-describedby="search-hint"
       />
     </div>
   );

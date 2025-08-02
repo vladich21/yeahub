@@ -1,7 +1,8 @@
 import { useQueryParams } from "@/shared/lib/hooks/useQueryParams";
 import { useGetSkillsQuery } from "@/entities/Skills/api/skillsApi";
-import { useGetSpecializationsQuery } from "../../../entities/Spezializations/api/specializationsApi";
+import { useGetSpecializationsQuery } from "@entities/Spezializations/api/specializationsApi";
 import { UseQuestionsFiltersResult } from "../model/types";
+import { useMemo } from "react";
 
 export const useQuestionsFilters = (): UseQuestionsFiltersResult => {
   const {
@@ -23,12 +24,12 @@ export const useQuestionsFilters = (): UseQuestionsFiltersResult => {
     specializations: specialization ? [Number(specialization)] : undefined,
   });
 
-  return {
-    filters: {
+  const filters = useMemo(
+    () => ({
       specialization: {
         options: specData?.data || [],
-        selectedId: Number(specialization) || undefined,
-        onSelect: (id) => setSpecialization(String(id)),
+        selectedId: specialization ? Number(specialization) : undefined,
+        onSelect: (id: number | string) => setSpecialization(String(id)),
       },
       skills: {
         options: skillsData?.data || [],
@@ -44,19 +45,46 @@ export const useQuestionsFilters = (): UseQuestionsFiltersResult => {
         onSelect: toggleRate,
       },
       title,
-    },
-    queryParams: {
+    }),
+    [
+      specData?.data,
+      specialization,
+      skillsData?.data,
+      skills,
+      complexity,
+      rate,
+      title,
+      setSpecialization,
+      toggleSkill,
+      toggleComplexity,
+      toggleRate,
+    ]
+  );
+
+  const queryParams = useMemo(
+    () => ({
       title: title.trim(),
       specialization: specialization ? Number(specialization) : undefined,
       skills: skills || undefined,
-      skillFilterMode: "ANY",
+      skillFilterMode: "ANY" as const,
       complexity: complexity || undefined,
       rate: rate || undefined,
       page: Number(page || 1),
       limit: 10,
-    },
-    actions: {
+    }),
+    [title, specialization, skills, complexity, rate, page]
+  );
+
+  // Мемоизация действий
+  const actions = useMemo(
+    () => ({
       setPage,
-    },
+    }),
+    [setPage]
+  );
+  return {
+    filters,
+    queryParams,
+    actions,
   };
 };

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
 export const useDebounce = <T>(
@@ -10,14 +10,6 @@ export const useDebounce = <T>(
   const [value, setValue] = useState(initialValue);
 
   const debouncedCallback = useDebouncedCallback(callback, delay, options);
-
-  useEffect(() => {
-    setValue(initialValue);
-  }, [initialValue]);
-
-  useEffect(() => {
-    return () => debouncedCallback.cancel();
-  }, [debouncedCallback]);
 
   return [value, setValue, debouncedCallback] as const;
 };

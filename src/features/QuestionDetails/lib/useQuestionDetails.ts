@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useGetQuestionByIdQuery } from "../../../entities/Questions/api/questionsApi";
+import { useGetQuestionByIdQuery } from "@entities/Questions/api/questionsApi";
 import { useNavigate } from "react-router-dom";
 
 export const useQuestionDetails = (id: string) => {
