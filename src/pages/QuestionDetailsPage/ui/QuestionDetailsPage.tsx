@@ -8,6 +8,10 @@ const QuestionDetailsWidget = lazy(
 const QuestionDetailsPage = () => {
   const { id } = useParams<{ id: string }>();
 
+  if (!id) {
+    return <div>Неверный ID вопроса</div>;
+  }
+
   return (
     <Suspense fallback={<QuestionDetailsSkeleton />}>
       {id && <QuestionDetailsWidget id={id} />}

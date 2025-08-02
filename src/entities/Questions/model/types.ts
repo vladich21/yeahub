@@ -18,23 +18,23 @@ export interface QuestionsListParams {
   random?: boolean;
 }
 export interface QuestionResponse {
-  page?: number;
-  limit?: number;
+  page: number;
+  limit: number;
   data: QuestionData[];
   total: number;
 }
 export type QuestionData = {
   id: number;
-  title?: string;
-  description?: string;
+  title: string;
+  description: string;
   code: string;
   imageSrc: string;
   keywords: string[];
   longAnswer: string;
   shortAnswer: string;
   status: string;
-  rate?: number;
-  complexity?: number;
+  rate: number;
+  complexity: number;
   createdById: string;
   updatedById: string;
   questionSpecializations: SpecializationsData[];
@@ -42,7 +42,7 @@ export type QuestionData = {
   createdAt: string;
   updatedAt: string;
   createdBy: Info;
-  updatedBy: Info;
+  updatedBy?: Info;
 };
 
 type Info = {
