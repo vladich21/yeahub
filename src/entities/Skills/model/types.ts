@@ -7,7 +7,7 @@ export type SkillsData = {
   imageSrc?: string;
   createdAt: string;
   updatedAt: string;
-  specializations: SpecializationsData;
+  specializations?: SpecializationsData;
 };
 
 export type SkillsResponse = {

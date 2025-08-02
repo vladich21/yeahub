@@ -4,15 +4,18 @@ import type { SkillsParams, SkillsResponse } from "../model/types";
 export const skillApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getSkills: builder.query<SkillsResponse, SkillsParams>({
-      query: ({ specializations, ...params }) => ({
-        url: "/skills",
-        params: {
-          ...params,
-          ...(specializations?.length && {
-            specializations: specializations.join(","),
-          }),
-        },
-      }),
+      query: (params: SkillsParams) => {
+        const { specializations, ...rest } = params;
+        return {
+          url: "/skills",
+          params: {
+            ...rest,
+            ...(specializations && {
+              specializations: specializations.join(","),
+            }),
+          },
+        };
+      },
     }),
   }),
   overrideExisting: true,
